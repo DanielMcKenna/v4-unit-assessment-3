@@ -105,6 +105,21 @@ class Player extends Character{
     this.healthLevel = healthLevel;
     this.attackLevel = attackLevel;
   }
+  defend(attackLevel){
+    let newHealth = this.healthLevel - attackLevel;
+    if(newHealth > 0){
+      let newObj = {
+        attackStrength: attackLevel,
+        remainingHealth: newHealth,
+        message: `${this.name} is still in the fight!`
+
+      }
+      return newObj;
+    }
+    else{
+      return `${this.name} has been defeated!`
+    }
+  }
 }
 
 /*
@@ -116,6 +131,9 @@ class Player extends Character{
 */
 
 //CODE HERE
+let aang = new Player('Aang', 'airbender', 100, 100);
+let ozai = new Player('Ozai', 'firebender', 100, 0);
+
 
 /*
     Let's see how a fight between these two would go. 
@@ -125,6 +143,7 @@ class Player extends Character{
 */
 
 //CODE HERE
+let battle = ozai.defend(aang.attackLevel);
 
 //////////////////PROBLEM 4////////////////////
 
@@ -144,6 +163,19 @@ class Player extends Character{
 
 //CODE HERE
 
+class Hero extends Player{
+  constructor(name, type, healthLevel, attackLevel){
+    super(name, type, healthLevel, attackLevel )
+    this.superPowers = [];
+  }
+  addSuperPower(power){
+    this.superPowers.push(power)
+  }
+  useSuperPower(index){
+    return `${this.name} used ${this.superPowers[index]}!`
+  }
+}
+
 /*
   Create a hero named 'Fire Spitter' whose type is 'dragon'. 
   Fire Spitter's healthLevel and attackLevels should both be 5000. 
@@ -154,3 +186,11 @@ class Player extends Character{
 */
 
 //CODE HERE
+
+let fireSpitter = new Hero('Fire Spitter', 'dragon', 5000, 5000);
+
+fireSpitter.addSuperPower('spitting fire');
+fireSpitter.addSuperPower('sleeping a lot');
+fireSpitter.addSuperPower('Burp a cow!');
+
+let fireSpitterAttack = fireSpitter.useSuperPower(0);

@@ -10,15 +10,21 @@ class App extends Component {
     super(props);
     this.state = {
       books: data,
+      shelf: [],
     }
+  }
+  addToShelf(){
+
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <BookList books={this.state.books}/>
-        <Shelf />
+        <section className="main_content">
+          <BookList books={this.state.books}/>
+          <Shelf />
+        </section>
       </div>
     );
   }

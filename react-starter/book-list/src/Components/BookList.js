@@ -12,15 +12,15 @@ class BookList extends Component {
 
   render() {
     let mappedBooks = this.props.books.map( (book) =>(
-      <div>
+      <div key={book.id} className="books">
         <img width="100px" src={book.img}/>
-        <h2>{book.title}</h2>
-        <h2>{book.author}</h2>
+        <p>{book.title}</p>
+        <p>{book.author}</p>
       </div>
     ));
     return (
-      <section>
-          {mappedBooks}
+      <section className="book-spacing">
+          { mappedBooks }
       </section>
     );
   }

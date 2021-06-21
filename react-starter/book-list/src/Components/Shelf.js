@@ -10,7 +10,7 @@ class Shelf extends Component {
 
   render() {
     return (
-      <section>
+      <section className="shelf">
           <h1>list</h1>
       </section>
     );

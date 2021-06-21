@@ -13,8 +13,12 @@ class App extends Component {
       shelf: [],
     }
   }
-  addToShelf(){
-
+  addToShelf = () => {
+    //should i do an if statment to get the id or a foreach loop to get the id and include that book?
+    const { shelf, books } = this.state;
+    let chosenBook = books.title
+    let newShelfBook = shelf.slice();
+    newShelfBook.push({ chosenBook })
   }
 
   render() {
@@ -22,8 +26,8 @@ class App extends Component {
       <div className="App">
         <Header />
         <section className="main_content">
-          <BookList books={this.state.books}/>
-          <Shelf />
+          <BookList books={this.state.books} addToShelf={this.state.addToShelf}/>
+          <Shelf shelf={this.state.shelf}/>
         </section>
       </div>
     );

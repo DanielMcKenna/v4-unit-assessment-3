@@ -8,12 +8,28 @@ class SearchBar extends Component{
     }
   }
 
+  handleChange =(e) => {
+   
+    this.setState({
+      userInput: e.target.value
+    })
+  }
+
+  handleClick = () => {
+    this.props.filterBooks(this.state.userInput);
+  }
+
+  handleClear = () => {
+    this.setState({ userInput: "" });
+    this.props.reset();
+  }
+
   render(){
     return(
       <section>
-        <input />
-        <button>Search</button>
-        <button>Clear Search</button>
+        <input onChange={(e) => this.handleChange(e)} value={this.state.userInput} />
+        <button onClick={() => this.handleClick()}>Search</button>
+        <button onClick={() => this.handleClear()}>Clear Search</button>
       </section>
     );
   }

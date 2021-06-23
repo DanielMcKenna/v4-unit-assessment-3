@@ -21,27 +21,33 @@ class App extends Component {
     this.setState({ shelf: [...shelf, {title, id} ]}, ()=>{
       console.log(this.state.shelf);
     });
-    
   }
 
   clearShelf = () => {
-    const { shelf } = this.state;
-
     this.setState({ shelf: []});
   }
 
   filterBooks = (input) => {
     const { books } = this.state;
-    let filteredBooks = books.filter(book => book.title.toLowerCase() === input.toLowerCase() || book.author.toLowerCase() === input.toLowerCase());
+    let filteredBooks = books.filter(book => 
+      console.log(book) || 
+      book.title.toLowerCase().includes(input.toLowerCase())  || 
+      book.author.toLowerCase().includes(input.toLowerCase()));
 
-    this.setState({ books: [filteredBooks]});
+    this.setState({ books: filteredBooks});
+
+    console.log(input);
+  }
+
+  reset = () => {
+    this.setState({ books: data });
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <SearchBar filterBooks={this.filterBooks}/>
+        <SearchBar filterBooks={this.filterBooks} reset={this.reset}/>
         <section className="main_content">
           <BookList books={this.state.books} addToShelf={this.addToShelf}/>
           <Shelf shelf={this.state.shelf} clearShelf={this.clearShelf}/>
